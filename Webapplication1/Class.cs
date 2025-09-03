@@ -17,7 +17,6 @@ namespace TodoAPI.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Log request details
             _logger.LogInformation(
                 "Handling request: {Method} {Path}{QueryString} from {RemoteIp}",
                 context.Request.Method,
@@ -26,10 +25,8 @@ namespace TodoAPI.Middleware
                 context.Connection.RemoteIpAddress?.ToString()
             );
 
-            // Call the next middleware in the pipeline
             await _next(context);
 
-            // Optionally log response details
             _logger.LogInformation(
                 "Finished handling request: {StatusCode}",
                 context.Response.StatusCode
